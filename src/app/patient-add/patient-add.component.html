@@ -1,0 +1,71 @@
+<form [formGroup]="form">
+  <div class="mb-3">
+    <h1>Add Details of The Patient</h1>
+    <mat-error *ngIf="form.invalid">
+      *All Fields Are Necessary To Add The Patient
+    </mat-error>
+    <div>
+      <input id="name" type="text" class="form-control" formControlName="name" placeholder="Name of the Patient" />
+
+    </div>
+    <br>
+    <div>
+
+      <input id="name" type="text" class="form-control" formControlName="age" placeholder="Age of the Patient" />
+
+      <mat-error *ngIf="age?.errors?.['pattern']">
+        *Enter a Valid Age
+      </mat-error>
+
+    </div>
+    <br>
+    <div> <input id="name" type="text" class="form-control" formControlName="mobile"
+        placeholder="Phone Number of the Patient" />
+
+      <mat-error *ngIf="mobile?.errors?.['pattern']">
+        *Enter a 10 digit phone number
+      </mat-error>
+    </div>
+    <br>
+    <div>
+        <input id="name" type="text" class="form-control" formControlName="email" placeholder="Email of the Patient" />
+        <mat-error *ngIf="email?.errors?.['email']">
+          *Enter a valid email address
+        </mat-error>
+  
+  </div>
+      <button class="btn btn-primary mt-2" (click)="createDrug()">Add Drugs</button>
+      <button class="btn btn-danger mt-2" (click)="resetPatient()">Reset</button>
+
+    </div>
+    <div class="decks" formArrayName="drugs" *ngFor="let item of drugs; let i = index">
+      <form class="row g-3" [formGroupName]="i">
+        <div class="col-auto">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name of the drug" />
+
+        </div>
+        <div class="col-auto">
+          <label for="cards">Description</label>
+          <input type="text" class="form-control" id="cards" formControlName="description"
+            placeholder="Description of the drug" />
+
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-danger ms-2" id="del" (click)="remove(i)">-</button>
+        </div>
+      </form>
+      <br>
+    </div>
+    <select formControlName="status">
+      <option value="">--Status Of Patient --</option>
+      <option value="Patient Inducted and Saved">Induction and Save </option>
+      <option value="Saved and Pending For Approval" disabled>Edit and Save</option>
+
+    </select>
+    <br>
+    <br>
+
+</form>
+<button class="btn btn-primary mt-2" (click)="addPatient()" [disabled]="form.invalid">Add Patient</button>
+<button class="btn btn-danger mt-2 " routerLink="/home">Back</button>

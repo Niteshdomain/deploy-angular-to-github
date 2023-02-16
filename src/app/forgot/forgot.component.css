@@ -1,0 +1,19 @@
+.card{
+    width: 490px;
+    top: 40%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    padding: 10px;
+    background-color: rgb(211, 210, 189);
+  }
+ 
+h2{
+  text-align: center;
+  font-weight: bold;
+}
+@media screen and (max-width:490px){
+  .a{
+      size: 30px;
+  }
+}

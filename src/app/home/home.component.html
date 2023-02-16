@@ -1,0 +1,43 @@
+ 
+<meta name="viewport"content="width=device-width,initial-scale=1.0">
+ <button class="btn btn-primary" (click)="_router.navigate(['/add'])">Add Patient</button>
+<input [formControl]="searcher" type="text" placeholder="Search Patient By Name" class="form-control mt-2" />
+<div>
+
+  <div class="patients" *ngIf="patients$ | async as patients">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"class="id">id</th>
+          <th scope="col">Name</th>
+          <th scope="col"class="age">Age</th>
+          <th scope="col"class="age">Mobile</th>
+          <th scope="col"class="age2">Email</th>
+          <th scope="col"class="age3">Drugs</th>
+          <th scope="col"id="age4">Status</th>
+          <th scope="col">Actions</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patients; let i = index;">
+          <th scope="row" class="id">{{ i }}</th>
+          <td>{{ patient.name }}</td>
+          <td class="age">{{ patient.age }}</td>
+          <td class="age">{{ patient.mobile }}</td>
+          <td class="age2">{{ patient.email}}</td>
+          <td class="age3">
+            <li *ngFor="let drug of patient.drugs">
+              {{ drug.name }} - {{ drug.description }}
+            </li>
+          </td>
+          <td class="text"id="age4">{{ patient.status}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="editPatient(patient)">Edit</button>
+            <button class="btn btn-secondary ms-2"  (click)="approvePatient(patient)">Approve/Reject</button>
+            <button class="btn btn-danger ms-2" (click)="deletePatient(patient)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

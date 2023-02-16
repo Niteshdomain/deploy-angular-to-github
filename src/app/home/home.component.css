@@ -1,0 +1,33 @@
+input{
+    border-radius: 50px;
+}
+.text{
+    color: rgb(250, 5, 5);
+    font-weight: 500;
+}
+@media screen and (max-width:827px){
+    .age{
+        display: none;
+    }
+}
+
+@media screen and (max-width:686px){
+    .age2{
+        display: none;
+    }
+}
+@media screen and (max-width:486px){
+    .age3{
+        display: none;
+    }
+}
+@media screen and (max-width:385px){
+    #age4{
+        display: none;
+    }
+}
+@media screen and (max-width:313px){
+    .id{
+        display: none;
+    }
+}

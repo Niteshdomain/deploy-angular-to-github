@@ -1,0 +1,27 @@
+<div class="body">
+  <mat-toolbar color="primary">
+    {{ title }}
+    <ng-container
+      *ngIf="authService.currentUser$ | async as user; else loginButton"
+    >
+      <button mat-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>account_circle</mat-icon>
+        {{ user.displayName }}
+        <mat-icon>expand_more</mat-icon>
+      </button>
+    </ng-container>
+    <ng-template #loginButton>
+      <button mat-button routerLink="login"></button>
+    </ng-template>
+  </mat-toolbar>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
+</mat-menu>

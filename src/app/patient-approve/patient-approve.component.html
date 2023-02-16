@@ -1,0 +1,78 @@
+<form [formGroup]="form">
+
+    <div class="mb-3">
+        <h1>Approve/Reject Patient </h1>
+        <div>
+            <input id="name" type="text" class="form-control" formControlName="name"readonly="true" 
+                placeholder="Name of the Patient" />
+            <mat-error *ngIf="name?.errors?.['required']">
+                *Name is required
+            </mat-error>
+        </div>
+        <br>
+        <div>
+
+            <input id="name" type="text" class="form-control" formControlName="age" placeholder="Age of the Patient"readonly="true"  />
+            <mat-error *ngIf="age?.errors?.['required']">
+                *Age is required
+            </mat-error>
+            <mat-error *ngIf="age?.errors?.['pattern']">
+                *Enter a valid Age
+            </mat-error>
+        </div>
+        <br>
+        <div> <input id="name" type="text" class="form-control" formControlName="mobile"
+                placeholder="Phone Number of the Patient"readonly="true"  />
+            <mat-error *ngIf="mobile?.errors?.['required']">
+                *Phone Number is required
+            </mat-error>
+            <mat-error *ngIf="mobile?.errors?.['pattern']">
+                *Enter a 10 digit phone number
+            </mat-error>
+        </div>
+        <br>
+        <div>
+            <input id="name" type="text" class="form-control" formControlName="email"
+                placeholder="Email of the Patient"readonly="true"  />
+            <mat-error *ngIf="email?.errors?.['required']">
+                *Email address is required
+            </mat-error>
+            <mat-error *ngIf="email?.errors?.['pattern']">
+                *Enter a valid email address
+            </mat-error>
+
+        </div>
+    </div>
+    <div class="decks" formArrayName="drugs" *ngFor="let item of drugs; let i = index">
+        <form class="row g-3" [formGroupName]="i">
+            <div class="col-auto">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name of the drug"
+                    readonly="true" />
+            </div>
+
+            <div class="col-auto">
+                <label for="cards">Description</label>
+                <input type="text" class="form-control" id="cards" formControlName="description"
+                    placeholder="Description of the drug" readonly="true" />
+            </div>
+
+
+        </form>
+        <br>
+    </div>
+    <p>Update the Status To Approve Or Reject</p>
+    <select formControlName="status">
+        <option value="">--Status Of Patient --</option>
+        <option value="Saved and Pending For Approval" disabled>Edit and Save</option>
+        <option value="Processed">Approve</option>
+        <option value="Rejected">Reject</option>
+    </select>
+    <br>
+    <br>
+</form>
+
+<button class="btn btn-primary mt-2" (click)="updatePatient()" [disabled]="form.invalid">
+    Update Patient
+</button>
+<button class="btn btn-danger mt-2" routerLink="/home">Back</button>

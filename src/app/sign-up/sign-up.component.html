@@ -1,0 +1,57 @@
+<meta name="viewport"content="width=device-width,initial-scale=1.0">
+<div class="form-container mat-elevation-z5" id="cas">
+    <h1>Sign Up -New User!</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+      <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name" class="a"/>
+        <mat-error *ngIf="name?.errors?.['required']">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email address" formControlName="email" class="a" />
+        <mat-error *ngIf="email?.errors?.['required']">
+          Email address is required
+        </mat-error>
+        <mat-error *ngIf="email?.errors?.['email']">
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+          class="a"
+        />
+        <mat-error *ngIf="password?.errors?.['required']">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="password?.errors?.['pattern']">
+            *Enter a valid Password
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          placeholder="Confirm Password"
+          formControlName="confirmPassword"
+          class="a"
+        />
+        <mat-error *ngIf="confirmPassword?.errors?.['required']">
+          Confirm Password is required
+        </mat-error>
+      </mat-form-field>
+      <mat-error *ngIf="signUpForm.errors?.['passwordsDontMatch']">
+          Passwords should match
+      </mat-error>
+      <div class="center margin-top">
+        <button type="submit" mat-raised-button color="primary">Sign Up!</button>
+       
+      </div>
+      
+    </form>
+    <span class="center margin-top"id="new">After Sign-up Go To Login :- <a class="sign-up-link" routerLink="/login">Login</a></span>
+  </div>

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "ferd-2321e"
+  },
+  "targets": {
+    "ferd-2321e": {
+      "hosting": {
+        "pdl11": [
+          "ferd-2321e"
+        ]
+      }
+    }
+  }
+}
